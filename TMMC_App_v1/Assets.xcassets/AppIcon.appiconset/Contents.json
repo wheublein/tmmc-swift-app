@@ -1,33 +1,44 @@
 {
   "images" : [
     {
-      "idiom" : "ipad",
       "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "mmc_logo_v2_29x29.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "mmc_logo_v2_58x58.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "mmc_logo_v2_40x40.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "mmc_logo_v2_80x80.png",
       "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "mmc_logo_v2_76x76.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "ipad",
       "size" : "76x76",
-      "scale" : "1x"
+      "scale" : "2x"
     },
     {
+      "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "size" : "76x76",
+      "filename" : "mmc_logo_v2_83x2.png",
       "scale" : "2x"
     }
   ],

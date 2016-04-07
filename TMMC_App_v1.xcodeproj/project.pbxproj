@@ -12,6 +12,8 @@
 		A6B9E38B1CB5AB1B000CA2CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6B9E3891CB5AB1B000CA2CD /* Main.storyboard */; };
 		A6B9E38D1CB5AB1B000CA2CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6B9E38C1CB5AB1B000CA2CD /* Assets.xcassets */; };
 		A6B9E3901CB5AB1B000CA2CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6B9E38E1CB5AB1B000CA2CD /* LaunchScreen.storyboard */; };
+		A6B9E3981CB5C8CD000CA2CD /* sound-corsica-ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = A6B9E3971CB5C8CD000CA2CD /* sound-corsica-ding.wav */; };
+		A6B9E39A1CB5C8D3000CA2CD /* sound-basic-click.wav in Resources */ = {isa = PBXBuildFile; fileRef = A6B9E3991CB5C8D3000CA2CD /* sound-basic-click.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		A6B9E38C1CB5AB1B000CA2CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6B9E38F1CB5AB1B000CA2CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6B9E3911CB5AB1B000CA2CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6B9E3971CB5C8CD000CA2CD /* sound-corsica-ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sound-corsica-ding.wav"; sourceTree = "<group>"; };
+		A6B9E3991CB5C8D3000CA2CD /* sound-basic-click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sound-basic-click.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				A6B9E3851CB5AB1B000CA2CD /* AppDelegate.swift */,
 				A6B9E3871CB5AB1B000CA2CD /* ViewController.swift */,
 				A6B9E3891CB5AB1B000CA2CD /* Main.storyboard */,
+				A6B9E3971CB5C8CD000CA2CD /* sound-corsica-ding.wav */,
+				A6B9E3991CB5C8D3000CA2CD /* sound-basic-click.wav */,
 				A6B9E38C1CB5AB1B000CA2CD /* Assets.xcassets */,
 				A6B9E38E1CB5AB1B000CA2CD /* LaunchScreen.storyboard */,
 				A6B9E3911CB5AB1B000CA2CD /* Info.plist */,
@@ -126,6 +132,8 @@
 				A6B9E3901CB5AB1B000CA2CD /* LaunchScreen.storyboard in Resources */,
 				A6B9E38D1CB5AB1B000CA2CD /* Assets.xcassets in Resources */,
 				A6B9E38B1CB5AB1B000CA2CD /* Main.storyboard in Resources */,
+				A6B9E3981CB5C8CD000CA2CD /* sound-corsica-ding.wav in Resources */,
+				A6B9E39A1CB5C8D3000CA2CD /* sound-basic-click.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
