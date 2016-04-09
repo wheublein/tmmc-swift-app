@@ -1,0 +1,18 @@
+{
+  "images" : [
+    {
+      "idiom" : "ipad",
+      "filename" : "mmc_gertrude_1536x800.JPG",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "mmc_gertrude_2048x1600.JPG",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

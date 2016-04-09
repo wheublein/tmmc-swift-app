@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A68A6DD71CB753B400452C0D /* MyURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A6DD61CB753B400452C0D /* MyURLProtocol.swift */; };
 		A6B9E3861CB5AB1B000CA2CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B9E3851CB5AB1B000CA2CD /* AppDelegate.swift */; };
 		A6B9E3881CB5AB1B000CA2CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B9E3871CB5AB1B000CA2CD /* ViewController.swift */; };
 		A6B9E38B1CB5AB1B000CA2CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6B9E3891CB5AB1B000CA2CD /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A68A6DD61CB753B400452C0D /* MyURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyURLProtocol.swift; sourceTree = "<group>"; };
 		A6B9E3821CB5AB1B000CA2CD /* TMMC_App_v1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMMC_App_v1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6B9E3851CB5AB1B000CA2CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6B9E3871CB5AB1B000CA2CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			children = (
 				A6B9E3851CB5AB1B000CA2CD /* AppDelegate.swift */,
 				A6B9E3871CB5AB1B000CA2CD /* ViewController.swift */,
+				A68A6DD61CB753B400452C0D /* MyURLProtocol.swift */,
 				A6B9E3891CB5AB1B000CA2CD /* Main.storyboard */,
 				A6B9E3971CB5C8CD000CA2CD /* sound-corsica-ding.wav */,
 				A6B9E3991CB5C8D3000CA2CD /* sound-basic-click.wav */,
@@ -146,6 +149,7 @@
 			files = (
 				A6B9E3881CB5AB1B000CA2CD /* ViewController.swift in Sources */,
 				A6B9E3861CB5AB1B000CA2CD /* AppDelegate.swift in Sources */,
+				A68A6DD71CB753B400452C0D /* MyURLProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +301,7 @@
 				A6B9E3961CB5AB1B000CA2CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
