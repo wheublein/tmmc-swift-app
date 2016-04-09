@@ -22,11 +22,13 @@
 //---------------------------------------------------------------------
 /*
  
-1. close webview after thank you message 
 2. kiosk mode lock - no calendar accessS
 3. random background after 10 minutes (backgroundTimer = 600)
- 
- 
+
+6. disable horizontal scroll in webview
+
+ // disable suggest/autocorrect - textField.autocorrectionType = UITextAutocorrectionType.No
+ // or  myTextView.autocorrectionType = UITextAutocorrectionTypeNo;
  
 */
 
@@ -35,8 +37,10 @@
 //---------------------------------------------------------------------
 /*
 1. show back button below web view
-
- 
+2. close webview after thank you message
+ 4. fix seal3 image size
+ 7. stop banner from covering webview
+ 5. hide keyboard after webview timeout
  
  */
 
@@ -71,13 +75,11 @@ class ViewController: UIViewController {
     var webBanners1600Dict:Dictionary<String,String> = Dictionary()
     var webBanners2048Dict:Dictionary<String,String> = Dictionary()
 
-//    var bannerImage : UIImage = UIImage(named: "banner2")!
     var imageViewBanner : UIImageView = UIImageView()
     var imageViewBackground: UIImageView = UIImageView()
     
     let myWebView:UIWebView = UIWebView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
 
-   // let BackText = NSAttributedString(string: "Back", attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
     var BackTextField = UITextField()
     let imageBackButton   = UIButton(type: UIButtonType.Custom) as UIButton
     
@@ -118,7 +120,7 @@ class ViewController: UIViewController {
         titleTextField = UITextField(frame: CGRect(x: 0, y: 0, width: myScreenWidth, height: (myScreenHeight/12)));
         titleTextField.attributedPlaceholder = placeholder;
         titleTextField.frame.origin = CGPoint(x: 20, y:0)
-        titleTextField.font = UIFont(name: "Verdana", size: 30)
+        titleTextField.font = UIFont(name: "Verdana", size: 24)
         titleTextField.userInteractionEnabled = false
         
         self.view.addSubview(titleTextField)
@@ -146,7 +148,8 @@ class ViewController: UIViewController {
         let imageMailButton   = UIButton(type: UIButtonType.Custom) as UIButton
         imageMailButton.frame = CGRectMake(0, 0, imageMail.size.width, imageMail.size.height)
         imageMailButton.setImage(imageMail, forState: .Normal)
-        var j = -1.0;
+        var j = -1.0
+        j = -0.75
         var xOffset = CGFloat(j) * (imageMailButton.frame.width)
         
         imageMailButton.center = CGPointMake((myScreenWidth/2) + xOffset, (myScreenHeight/2) + (imageMailButton.frame.height))
@@ -161,6 +164,7 @@ class ViewController: UIViewController {
         imageDonateButton.frame = CGRectMake(0, 0, imageDonate.size.width, imageDonate.size.height)
         imageDonateButton.setImage(imageDonate, forState: .Normal)
         j = 1.0
+        j = 0.75
         xOffset = CGFloat(j) * (imageMailButton.frame.width)
         imageDonateButton.center = CGPointMake((myScreenWidth/2) + xOffset, (myScreenHeight/2) + (imageDonateButton.frame.height))
         
@@ -191,7 +195,7 @@ class ViewController: UIViewController {
         //Add button labels
         //---------------------------------------------------------------------
        
-        let DonateText = NSAttributedString(string: "Donate", attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+        let DonateText = NSAttributedString(string: "Make a Donation", attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
         let DonateTextField = UITextField(frame: CGRect(x: 0, y: 0, width: (myScreenWidth/3), height: (myScreenHeight/12)));
         DonateTextField.attributedPlaceholder = DonateText;
         DonateTextField.center = imageDonateButton.center;
@@ -249,6 +253,10 @@ class ViewController: UIViewController {
     //---------------------------------------------------------------------
     
     
+    //---------------------------------------------------------------------
+    //Begin Actions
+    //---------------------------------------------------------------------
+    
     
     //---------------------------------------------------------------------
     //Actions for buttons
@@ -257,9 +265,9 @@ class ViewController: UIViewController {
     
     func buttonActionDonate(sender:UIButton!){
         // runs when donate button is clicked
-        print("Button tapped")
-        print("Button tag :")
-        print (sender.tag)
+        //print("Button tapped")
+        //print("Button tag :")
+        //print (sender.tag)
         var button:UIButton = sender;
         //playSoundDing()
         playSoundClick()
@@ -271,9 +279,9 @@ class ViewController: UIViewController {
   
     func buttonActionMail(sender:UIButton!){
         //runs when mailing list button is clicked
-        print("Button tapped")
-        print("Button tag :")
-        print (sender.tag)
+        //print("Button tapped")
+        //print("Button tag :")
+        //print (sender.tag)
         var button:UIButton = sender;
         playSoundClick()
         print("transition web")
@@ -293,12 +301,16 @@ class ViewController: UIViewController {
     func openWebPage(){
         //opens tmmc site's ipad-specific sign up page
         myWebView.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.marinemammalcenter.org/Get-Involved/take-action/email-signup-ipad.html")!))
+        //myTextView.autocorrectionType = UITextAutocorrectionTypeNo;
         
+        //myWebView.scalesPageToFit = true
+        myWebView.scrollView.scrollEnabled = false
         if (myWebView.hidden == true){
             myWebView.hidden = false
         } else {
             self.view.addSubview(myWebView)
         }
+        self.view.bringSubviewToFront(myWebView)
         self.view.bringSubviewToFront(BackTextField)
         self.view.bringSubviewToFront(imageBackButton)
         isWebView = true
@@ -310,6 +322,8 @@ class ViewController: UIViewController {
         isWebView = false
         URLState = "none"
         webCountdown = 4
+        //hide keyboard
+        view.endEditing(true)
         //hide back button
         self.view.sendSubviewToBack(BackTextField)
         self.view.sendSubviewToBack(imageBackButton)
@@ -362,13 +376,15 @@ class ViewController: UIViewController {
 
     
     func updateBannerTimerCounter(){
-        print("banner timer: ")
-        print(bannerTimerCounter)
-        bannerTimerCounter += 1
-        if (bannerTimerCounter == bannerTimeout) {
-            //time reached to change banner image
-            loadRandomBanner()
-            bannerTimerCounter = 0
+        //print("banner timer: ")
+        //print(bannerTimerCounter)
+        if  isWebView == false {
+            bannerTimerCounter += 1
+            if (bannerTimerCounter == bannerTimeout) {
+                //time reached to change banner image
+                loadRandomBanner()
+                bannerTimerCounter = 0
+            }
         }
     }
  
@@ -394,7 +410,7 @@ class ViewController: UIViewController {
         let localBanners : [String] = ["banner1","banner2","banner3"]
         var bannerString = localBanners[1]
 
-        var myRand = randRange(0,upper: 2)
+        let myRand = randRange(0,upper: 2)
         
         var imageKey = "link3"
         
@@ -435,7 +451,12 @@ class ViewController: UIViewController {
             }
         }
         
+        //let myScreenWidth = myScreenSize.width
+        //let myScreenHeight = myScreenSize.height
+
         imageViewBanner.frame =  CGRectMake(0, 0, bannerImage.size.width, bannerImage.size.height - 100)
+        imageViewBanner.frame =  CGRectMake(0, 0, myScreenSize.width, (myScreenSize.width * 0.5))
+        
         imageViewBanner.frame.origin = CGPoint(x: 0, y:80)
         imageViewBanner.contentScaleFactor = 0.5
         imageViewBanner.tag = 10
@@ -448,6 +469,8 @@ class ViewController: UIViewController {
     //Detect Touch
     //---------------------------------------------------------------------
     
+    //unused
+    /*
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touch = touches.first {
             print("touch")
@@ -456,7 +479,7 @@ class ViewController: UIViewController {
             //clearCounter()
         }
     }
-    
+    */
     
 
 

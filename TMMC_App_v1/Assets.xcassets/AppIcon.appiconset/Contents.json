@@ -21,7 +21,7 @@
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "mmc_logo_v2_80x80.png",
+      "filename" : "mmc_logo_v2_80x80a.png",
       "scale" : "2x"
     },
     {
@@ -31,8 +31,9 @@
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "mmc_logo_v2_76x2.png",
       "scale" : "2x"
     },
     {
