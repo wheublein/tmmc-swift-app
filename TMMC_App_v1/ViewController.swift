@@ -2,8 +2,9 @@
 //  ViewController.swift
 //  TMMC_App_v1
 //
-//  Created by wheublein on 4/6/16.
+//  Developed by william heublein in April 2016.
 //  Coded in 2016 by Will Heublein for the Marine Mammal Center.
+//  see willheublein.com
 //  App Code is covered by Creative Commons NonCommercial 4.0 Licence
 //  http://creativecommons.org/licenses/by-nc/4.0/
 //
@@ -23,10 +24,11 @@
 /*
  
 2. kiosk mode lock - no calendar accessS
-3. random background after 10 minutes (backgroundTimer = 600)
 
-6. disable horizontal scroll in webview
-
+7. scale webview to fit screen
+9. match web banners to screen size
+ 8. random background changes
+ 
  // disable suggest/autocorrect - textField.autocorrectionType = UITextAutocorrectionType.No
  // or  myTextView.autocorrectionType = UITextAutocorrectionTypeNo;
  
@@ -41,6 +43,9 @@
  4. fix seal3 image size
  7. stop banner from covering webview
  5. hide keyboard after webview timeout
+ 6. disable horizontal scroll in webview
+ 8. change banner timeout to 10 minute intervals
+
  
  */
 
@@ -50,11 +55,6 @@ import AudioToolbox
 
 
 class ViewController: UIViewController {
-
-    
-    //var appStatus = "loaded" //loaded, webform, webthanks, donateAlert
-    //var imageView:UIImageView = UIImageView()
-    
     
     let myScreenSize: CGRect = UIScreen.mainScreen().bounds
     var isWebView = false
@@ -64,12 +64,14 @@ class ViewController: UIViewController {
     
     var webTimer = NSTimer()
     var webTimerCounter = 0
-    var webTimerTimeout = 120
+    var webTimerTimeout = 180  //time before web view autocloses in seconds - 180 equals 3 minutes
+    
+
     var webCountdown = 4
     
     var bannerTimer = NSTimer()
     var bannerTimerCounter = 0
-    var bannerTimeout = 6
+    var bannerTimeout = 600   //time before banner change in seconds - 600 equals 10 minutes
     
     
     var webBanners1600Dict:Dictionary<String,String> = Dictionary()
@@ -268,11 +270,12 @@ class ViewController: UIViewController {
         //print("Button tapped")
         //print("Button tag :")
         //print (sender.tag)
-        var button:UIButton = sender;
+        //var button:UIButton = sender;
         //playSoundDing()
+        
         playSoundClick()
         let alertController = UIAlertController(title: "Donations", message:
-            "The Marine Mammal Center uses Square for donations made by credit or debit card - a volunteer can help you complete your donation", preferredStyle: UIAlertControllerStyle.Alert)
+            "The Marine Mammal Center uses the Square payment processing system for donations made by credit or debit card - a volunteer can help you complete your donation.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
             self.presentViewController(alertController, animated: true, completion: nil)
     }
@@ -282,7 +285,8 @@ class ViewController: UIViewController {
         //print("Button tapped")
         //print("Button tag :")
         //print (sender.tag)
-        var button:UIButton = sender;
+        //var button:UIButton = sender;
+        
         playSoundClick()
         print("transition web")
         openWebPage()
@@ -403,8 +407,8 @@ class ViewController: UIViewController {
     //---------------------------------------------------------------------
     
     func loadRandomBanner(){
-        print("running random banner")
-        
+        //print("running random banner")
+        //bannerSource is "local" or "web"
         let bannerSource = "local"
         var bannerImage : UIImage = UIImage(named: "banner2")!
         let localBanners : [String] = ["banner1","banner2","banner3"]
@@ -464,6 +468,12 @@ class ViewController: UIViewController {
 
     }
 
+    
+    
+    //---------------------------------------------------------------------
+    //Update web counter
+    //---------------------------------------------------------------------
+    
     
     //---------------------------------------------------------------------
     //Detect Touch
