@@ -23,15 +23,17 @@
 //---------------------------------------------------------------------
 /*
  
-2. kiosk mode lock - no calendar accessS
+2. kiosk mode lock - no calendar access
 
 7. scale webview to fit screen
 9. match web banners to screen size
  8. random background changes
+ 10. support orientation change
  
  // disable suggest/autocorrect - textField.autocorrectionType = UITextAutocorrectionType.No
  // or  myTextView.autocorrectionType = UITextAutocorrectionTypeNo;
  
+ //see : https://developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html
 */
 
 //---------------------------------------------------------------------
@@ -71,7 +73,8 @@ class ViewController: UIViewController {
     
     var bannerTimer = NSTimer()
     var bannerTimerCounter = 0
-    var bannerTimeout = 600   //time before banner change in seconds - 600 equals 10 minutes
+    var bannerTimeout = 6
+    //time before banner change in seconds - 600 equals 10 minutes
     
     
     var webBanners1600Dict:Dictionary<String,String> = Dictionary()
@@ -151,7 +154,8 @@ class ViewController: UIViewController {
         imageMailButton.frame = CGRectMake(0, 0, imageMail.size.width, imageMail.size.height)
         imageMailButton.setImage(imageMail, forState: .Normal)
         var j = -1.0
-        j = -0.75
+        //for vertical layout
+        //j = -0.75
         var xOffset = CGFloat(j) * (imageMailButton.frame.width)
         
         imageMailButton.center = CGPointMake((myScreenWidth/2) + xOffset, (myScreenHeight/2) + (imageMailButton.frame.height))
@@ -166,7 +170,8 @@ class ViewController: UIViewController {
         imageDonateButton.frame = CGRectMake(0, 0, imageDonate.size.width, imageDonate.size.height)
         imageDonateButton.setImage(imageDonate, forState: .Normal)
         j = 1.0
-        j = 0.75
+        //for vertical layout
+        //j = 0.75
         xOffset = CGFloat(j) * (imageMailButton.frame.width)
         imageDonateButton.center = CGPointMake((myScreenWidth/2) + xOffset, (myScreenHeight/2) + (imageDonateButton.frame.height))
         
@@ -185,7 +190,11 @@ class ViewController: UIViewController {
         imageBackButton.frame = CGRectMake(0, 0, imageBack.size.width, imageBack.size.height)
         imageBackButton.setImage(imageBack, forState: .Normal)
         xOffset = 0
+        //for vertical view
         imageBackButton.center = CGPointMake((myScreenWidth/2) + xOffset, (myScreenHeight) - (myScreenHeight / 4))
+        //for horizontal view
+        imageBackButton.center = CGPointMake(myScreenWidth - (myScreenWidth/4) + xOffset, (myScreenHeight) - (myScreenHeight / 4))
+        
         imageBackButton.tag = 3
         imageBackButton.addTarget(self, action: "buttonActionBack:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -201,7 +210,7 @@ class ViewController: UIViewController {
         let DonateTextField = UITextField(frame: CGRect(x: 0, y: 0, width: (myScreenWidth/3), height: (myScreenHeight/12)));
         DonateTextField.attributedPlaceholder = DonateText;
         DonateTextField.center = imageDonateButton.center;
-        DonateTextField.frame.origin.y += imageDonate.size.height
+        DonateTextField.frame.origin.y += imageDonate.size.height * 0.75
         DonateTextField.font = UIFont(name: "Verdana", size: 30)
         DonateTextField.textAlignment = .Center
         DonateTextField.userInteractionEnabled = false
@@ -211,7 +220,7 @@ class ViewController: UIViewController {
         let MailTextField = UITextField(frame: CGRect(x: 0, y: 0, width: (myScreenWidth/3), height: (myScreenHeight/12)));
         MailTextField.attributedPlaceholder = MailText;
        MailTextField.center = imageMailButton.center;
-        MailTextField.frame.origin.y += (imageDonate.size.height)
+        MailTextField.frame.origin.y += (imageDonate.size.height * 0.75)
         MailTextField.font = UIFont(name: "Verdana", size: 30)
         MailTextField.textAlignment = .Center
         MailTextField.userInteractionEnabled = false
@@ -233,13 +242,6 @@ class ViewController: UIViewController {
         self.view.sendSubviewToBack(imageBackButton)
         
         
-        //This works
-        //print("self.view.subviews.indexOf(BackTextField) :")
-        //print(self.view.subviews.indexOf(BackTextField))
-        
-        //returns
-        //self.view.subviews.indexOf(BackTextField) :
-        //Optional(11)
         
         //---------------------------------------------------------------------
         //Timers
@@ -411,7 +413,11 @@ class ViewController: UIViewController {
         //bannerSource is "local" or "web"
         let bannerSource = "local"
         var bannerImage : UIImage = UIImage(named: "banner2")!
-        let localBanners : [String] = ["banner1","banner2","banner3"]
+        // for vertical orientation
+        //let localBanners : [String] = ["banner1","banner2","banner3"]
+        //for horizontal orientation
+        let localBanners : [String] = ["banner-horizontal1","banner-horizontal2","banner-horizontal3"]
+        
         var bannerString = localBanners[1]
 
         let myRand = randRange(0,upper: 2)
@@ -458,10 +464,20 @@ class ViewController: UIViewController {
         //let myScreenWidth = myScreenSize.width
         //let myScreenHeight = myScreenSize.height
 
-        imageViewBanner.frame =  CGRectMake(0, 0, bannerImage.size.width, bannerImage.size.height - 100)
-        imageViewBanner.frame =  CGRectMake(0, 0, myScreenSize.width, (myScreenSize.width * 0.5))
+        //imageViewBanner.frame =  CGRectMake(0, 0, bannerImage.size.width, bannerImage.size.height - 100)
+        //imageViewBanner.frame =  CGRectMake(0, 0, myScreenSize.width, (myScreenSize.width * 0.5))
         
-        imageViewBanner.frame.origin = CGPoint(x: 0, y:80)
+        imageViewBanner.frame =  CGRectMake(0, 0, myScreenSize.width, (myScreenSize.width * 0.39))
+        
+        /*
+        imageViewBanner.frame =  CGRectMake(0, 0, myScreenSize.width, 400)
+
+        if myScreenSize.width > 1040{
+            imageViewBanner.frame =  CGRectMake(0, 0, myScreenSize.width, 800)
+        }
+        */
+        
+        imageViewBanner.frame.origin = CGPoint(x: 0, y:(myScreenSize.height / 12) - 12)
         imageViewBanner.contentScaleFactor = 0.5
         imageViewBanner.tag = 10
         view.addSubview(imageViewBanner)

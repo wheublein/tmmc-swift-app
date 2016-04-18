@@ -105,7 +105,7 @@
 				TargetAttributes = {
 					A6B9E3811CB5AB1B000CA2CD = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = YV88E8JS3B;
+						DevelopmentTeam = C42WKD7882;
 					};
 				};
 			};
@@ -264,6 +264,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TMMC_App_v1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.willheublein.TMMC-App-v1";
@@ -275,6 +276,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TMMC_App_v1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.willheublein.TMMC-App-v1";
