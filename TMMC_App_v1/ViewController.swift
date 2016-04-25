@@ -29,7 +29,7 @@
 9. match web banners to screen size
  8. random background changes
  10. support orientation change
- 
+ 11. make sure textfields are clear when you go back then reload email page
  // disable suggest/autocorrect - textField.autocorrectionType = UITextAutocorrectionType.No
  // or  myTextView.autocorrectionType = UITextAutocorrectionTypeNo;
  
@@ -335,6 +335,21 @@ class ViewController: UIViewController {
         self.view.sendSubviewToBack(imageBackButton)
     }
     
+    func updateWebCounter(){
+        print("php test")
+        let url: NSURL = NSURL(string: "http://willheublein.com/tmmc/update-kiosk-count.php")!
+        let request:NSMutableURLRequest = NSMutableURLRequest(URL:url)
+        let bodyData = "data=something"
+        request.HTTPMethod = "POST"
+        request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue())
+        {
+            (response, data, error) in
+            print(response)
+            
+        }
+    }
+    
     
     
     //---------------------------------------------------------------------
@@ -372,6 +387,8 @@ class ViewController: UIViewController {
             }
             
             if webCountdown <= 0 {
+                //call php page to increment web counter txt file
+                updateWebCounter()
                 hideWebPage()
             } else if (webTimerCounter == webTimerTimeout){
                 //time reached to clear web view
