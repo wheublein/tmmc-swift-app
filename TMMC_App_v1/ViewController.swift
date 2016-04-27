@@ -26,6 +26,8 @@
  
 2. kiosk mode lock - no calendar access
 
+ 
+ 
 7. scale webview to fit screen
  8. random background changes
  10. support orientation change
