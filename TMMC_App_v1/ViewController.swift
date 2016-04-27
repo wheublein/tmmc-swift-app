@@ -1,19 +1,18 @@
 //
 //  ViewController.swift
 //  TMMC_App_v1
+//  v 1.01
+//  Developed as a Taproot+ Project
 //
 //  Developed by william heublein in April 2016.
 //  Coded in 2016 by Will Heublein for the Marine Mammal Center.
 //  see willheublein.com
-//  App Code is covered by Creative Commons NonCommercial 4.0 Licence
-//  http://creativecommons.org/licenses/by-nc/4.0/
 //
-// You may share, copy and redistribute the material in any medium or format
-// You may adapt — remix, transform, and build upon the material
+//  App Code is covered by the MIT License
+//  Copyright (c) 2016 William Heublein
 //
-//  Images are copyrighted by The Marine Mammal Center, all rights reserved
+//  Images are copyrighted by The Marine Mammal Center, (c) 2016 all rights reserved
 //
-//  Developed as a Taproot+ Project
 //
 
 
@@ -23,10 +22,11 @@
 //---------------------------------------------------------------------
 /*
  
+ //fix line 75 - timer count 
+ 
 2. kiosk mode lock - no calendar access
 
 7. scale webview to fit screen
-9. match web banners to screen size
  8. random background changes
  10. support orientation change
  11. make sure textfields are clear when you go back then reload email page
@@ -47,6 +47,7 @@
  5. hide keyboard after webview timeout
  6. disable horizontal scroll in webview
  8. change banner timeout to 10 minute intervals
+ 9. match web banners to screen size
 
  
  */

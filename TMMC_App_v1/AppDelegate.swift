@@ -1,10 +1,20 @@
 //
 //  AppDelegate.swift
 //  TMMC_App_v1
+//  v 1.01
+//  Developed as a Taproot+ Project
 //
-//  Created by wheublein on 4/6/16.
-//  Copyright © 2016 wheublein. All rights reserved.
+//  Developed by william heublein in April 2016.
+//  Coded in 2016 by Will Heublein for the Marine Mammal Center.
+//  see willheublein.com
 //
+//  App Code is covered by the MIT License
+//  Copyright (c) 2016 William Heublein
+//
+//  Images are copyrighted by The Marine Mammal Center, (c) 2016 all rights reserved
+//
+//
+
 
 import UIKit
 
