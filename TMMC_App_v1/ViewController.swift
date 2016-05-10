@@ -23,6 +23,8 @@
 //---------------------------------------------------------------------
 /*
  
+ // close donate popup after 15-20 seconds
+ 
 2. kiosk mode lock - no calendar access
 
 7. scale webview to fit screen
@@ -48,7 +50,6 @@
  6. disable horizontal scroll in webview
  8. change banner timeout to 10 minute intervals
 
- 
  */
 
 import UIKit
@@ -73,7 +74,7 @@ class ViewController: UIViewController {
     
     var bannerTimer = NSTimer()
     var bannerTimerCounter = 0
-    var bannerTimeout = 6
+    var bannerTimeout = 600
     //time before banner change in seconds - 600 equals 10 minutes
     
     
@@ -193,7 +194,7 @@ class ViewController: UIViewController {
         //for vertical view
         imageBackButton.center = CGPointMake((myScreenWidth/2) + xOffset, (myScreenHeight) - (myScreenHeight / 4))
         //for horizontal view
-        imageBackButton.center = CGPointMake(myScreenWidth - (myScreenWidth/4) + xOffset, (myScreenHeight) - (myScreenHeight / 4))
+        imageBackButton.center = CGPointMake(myScreenWidth - (myScreenWidth/6) + xOffset, (myScreenHeight) - (myScreenHeight / 4))
         
         imageBackButton.tag = 3
         imageBackButton.addTarget(self, action: "buttonActionBack:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -280,6 +281,13 @@ class ViewController: UIViewController {
             "The Marine Mammal Center uses the Square payment processing system for donations made by credit or debit card - a volunteer can help you complete your donation.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
             self.presentViewController(alertController, animated: true, completion: nil)
+        //close alert after 12 seconds
+        let delay = 12.0 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        
+        dispatch_after(time, dispatch_get_main_queue(), {
+            alertController.dismissViewControllerAnimated(true, completion: nil)
+        })
     }
   
     func buttonActionMail(sender:UIButton!){
@@ -346,7 +354,6 @@ class ViewController: UIViewController {
         {
             (response, data, error) in
             print(response)
-            
         }
     }
     
@@ -386,7 +393,7 @@ class ViewController: UIViewController {
                webCountdown -= 1
             }
             
-            if webCountdown <= 0 {
+            if webCountdown <= -2 {
                 //call php page to increment web counter txt file
                 updateWebCounter()
                 hideWebPage()
