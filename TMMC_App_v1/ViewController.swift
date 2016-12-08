@@ -15,6 +15,7 @@
 //
 //  Developed as a Taproot+ Project
 //
+// v 1.1 Updated August 2016
 
 
 
@@ -23,10 +24,8 @@
 //---------------------------------------------------------------------
 /*
  
- // close donate popup after 15-20 seconds
  
 2. kiosk mode lock - no calendar access
-
 7. scale webview to fit screen
 9. match web banners to screen size
  8. random background changes
@@ -42,15 +41,15 @@
 //Done
 //---------------------------------------------------------------------
 /*
-1. show back button below web view
-2. close webview after thank you message
+ 1. show back button below web view
+ 2. close webview after thank you message
  4. fix seal3 image size
  7. stop banner from covering webview
  5. hide keyboard after webview timeout
  6. disable horizontal scroll in webview
  8. change banner timeout to 10 minute intervals
-
- */
+ 9. close donate popup after 15-20 seconds
+*/
 
 import UIKit
 import WebKit
@@ -74,8 +73,8 @@ class ViewController: UIViewController {
     
     var bannerTimer = NSTimer()
     var bannerTimerCounter = 0
-    var bannerTimeout = 600
-    //time before banner change in seconds - 600 equals 10 minutes
+    var bannerTimeout = 120
+    //time before banner change in seconds - 600 equals 10 minutes, 60 = 1 minute
     
     
     var webBanners1600Dict:Dictionary<String,String> = Dictionary()
@@ -87,7 +86,7 @@ class ViewController: UIViewController {
     let myWebView:UIWebView = UIWebView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
 
     var BackTextField = UITextField()
-    let imageBackButton   = UIButton(type: UIButtonType.Custom) as UIButton
+    let imageBackButton = UIButton(type: UIButtonType.Custom) as UIButton
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,7 +118,7 @@ class ViewController: UIViewController {
         //Add Title Text
         //---------------------------------------------------------------------
         let titleTextField : UITextField!
-        let titleString : String = "The Marine Mammal Center App"
+        let titleString : String = "The Marine Mammal Center"
 
         let placeholder = NSAttributedString(string: titleString, attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
         
@@ -161,7 +160,17 @@ class ViewController: UIViewController {
         
         imageMailButton.center = CGPointMake((myScreenWidth/2) + xOffset, (myScreenHeight/2) + (imageMailButton.frame.height))
         imageMailButton.tag = 1;
-        imageMailButton.addTarget(self, action: "buttonActionMail:", forControlEvents: UIControlEvents.TouchUpInside)
+        //imageMailButton.addTarget(self, action: "buttonActionMail:", forControlEvents: UIControlEvents.TouchUpInside)
+        imageMailButton.addTarget(self, action: #selector(ViewController.buttonActionMail(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        /*
+        button.addTarget(object, action: #selector(MyClass.buttonTapped),
+                         forControlEvents: .TouchUpInside)
+        view.performSelector(#selector(UIView.insertSubview(_:aboveSubview:)),
+                             withObject: button, withObject: otherButton)
+         */
+        
+        
         
         self.view.addSubview(imageMailButton)
         
@@ -177,7 +186,9 @@ class ViewController: UIViewController {
         imageDonateButton.center = CGPointMake((myScreenWidth/2) + xOffset, (myScreenHeight/2) + (imageDonateButton.frame.height))
         
         imageDonateButton.tag = 2
-        imageDonateButton.addTarget(self, action: "buttonActionDonate:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        
+        imageDonateButton.addTarget(self, action: #selector(ViewController.buttonActionDonate(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(imageDonateButton)
         
@@ -197,7 +208,8 @@ class ViewController: UIViewController {
         imageBackButton.center = CGPointMake(myScreenWidth - (myScreenWidth/6) + xOffset, (myScreenHeight) - (myScreenHeight / 4))
         
         imageBackButton.tag = 3
-        imageBackButton.addTarget(self, action: "buttonActionBack:", forControlEvents: UIControlEvents.TouchUpInside)
+        imageBackButton.addTarget(self, action: #selector(ViewController.buttonActionBack(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+
         
         self.view.addSubview(imageBackButton)
         
@@ -248,9 +260,13 @@ class ViewController: UIViewController {
         //Timers
         //---------------------------------------------------------------------
         
-        webTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateWebTimerCounter"), userInfo: nil, repeats: true)
-        bannerTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateBannerTimerCounter"), userInfo: nil, repeats: true)
-        
+        webTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: #selector(ViewController.updateWebTimerCounter), userInfo: nil, repeats: true)
+        bannerTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: #selector(ViewController.updateBannerTimerCounter), userInfo: nil, repeats: true)
+        /*
+        let timer = NSTimer(timeInterval: 1, target: object,
+                            selector: #selector(MyClass.test),
+                            userInfo: nil, repeats: false)
+ */
     }
     
     //---------------------------------------------------------------------
@@ -316,7 +332,6 @@ class ViewController: UIViewController {
         //opens tmmc site's ipad-specific sign up page
         myWebView.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.marinemammalcenter.org/Get-Involved/take-action/email-signup-ipad.html")!))
         //myTextView.autocorrectionType = UITextAutocorrectionTypeNo;
-        
         //myWebView.scalesPageToFit = true
         myWebView.scrollView.scrollEnabled = false
         if (myWebView.hidden == true){
@@ -342,7 +357,8 @@ class ViewController: UIViewController {
         self.view.sendSubviewToBack(BackTextField)
         self.view.sendSubviewToBack(imageBackButton)
     }
-    
+  
+    /*
     func updateWebCounter(){
         print("php test")
         let url: NSURL = NSURL(string: "http://willheublein.com/tmmc/update-kiosk-count.php")!
@@ -356,8 +372,31 @@ class ViewController: UIViewController {
             print(response)
         }
     }
+    */
     
+    /*
+ let session = NSURLSession.sharedSession()
+ let urlString = "https://api.yoursecureapiservergoeshere.com/1/whatever"
+ let url = NSURL(string: urlString)
+ let request = NSURLRequest(URL: url!)
+ let dataTask = session.dataTaskWithRequest(request) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+ print("done, error: \(error)")
+ }
+ dataTask.resume()
+
+*/
+    func updateWebCounter(){
+        print("php test version 2")
+        let session = NSURLSession.sharedSession()
+        let url: NSURL = NSURL(string: "http://willheublein.com/tmmc/update-kiosk-count.php")!
+        let request = NSURLRequest(URL: url)
+        let dataTask = session.dataTaskWithRequest(request) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+            print("done, error: \(error)")
+        }
+         dataTask.resume()
+    }
     
+        
     
     //---------------------------------------------------------------------
     //Add Sound - Ding
@@ -386,8 +425,8 @@ class ViewController: UIViewController {
     func updateWebTimerCounter(){
         
         if  isWebView == true {
-            print("web timer: ")
-            print(webTimerCounter)
+            //print("web timer: ")
+            //print(webTimerCounter)
             webTimerCounter += 1
             if (URLState == "Thank you page"){
                webCountdown -= 1
@@ -395,6 +434,7 @@ class ViewController: UIViewController {
             
             if webCountdown <= -2 {
                 //call php page to increment web counter txt file
+                print ("calling php page")
                 updateWebCounter()
                 hideWebPage()
             } else if (webTimerCounter == webTimerTimeout){
@@ -531,8 +571,6 @@ class ViewController: UIViewController {
     }
     */
     
-
-
     
     
     override func didReceiveMemoryWarning() {

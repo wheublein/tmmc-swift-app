@@ -19,7 +19,7 @@
 
 /* Begin PBXFileReference section */
 		A68A6DD61CB753B400452C0D /* MyURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyURLProtocol.swift; sourceTree = "<group>"; };
-		A6B9E3821CB5AB1B000CA2CD /* TMMC_App_v1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMMC_App_v1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6B9E3821CB5AB1B000CA2CD /* TMMC_App_v1.3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMMC_App_v1.3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6B9E3851CB5AB1B000CA2CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6B9E3871CB5AB1B000CA2CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A6B9E38A1CB5AB1B000CA2CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 		A6B9E3831CB5AB1B000CA2CD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A6B9E3821CB5AB1B000CA2CD /* TMMC_App_v1.app */,
+				A6B9E3821CB5AB1B000CA2CD /* TMMC_App_v1.3.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,9 +76,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A6B9E3811CB5AB1B000CA2CD /* TMMC_App_v1 */ = {
+		A6B9E3811CB5AB1B000CA2CD /* TMMC_App_v1.3 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A6B9E3941CB5AB1B000CA2CD /* Build configuration list for PBXNativeTarget "TMMC_App_v1" */;
+			buildConfigurationList = A6B9E3941CB5AB1B000CA2CD /* Build configuration list for PBXNativeTarget "TMMC_App_v1.3" */;
 			buildPhases = (
 				A6B9E37E1CB5AB1B000CA2CD /* Sources */,
 				A6B9E37F1CB5AB1B000CA2CD /* Frameworks */,
@@ -88,9 +88,9 @@
 			);
 			dependencies = (
 			);
-			name = TMMC_App_v1;
+			name = TMMC_App_v1.3;
 			productName = TMMC_App_v1;
-			productReference = A6B9E3821CB5AB1B000CA2CD /* TMMC_App_v1.app */;
+			productReference = A6B9E3821CB5AB1B000CA2CD /* TMMC_App_v1.3.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -109,7 +109,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A6B9E37D1CB5AB1B000CA2CD /* Build configuration list for PBXProject "TMMC_App_v1" */;
+			buildConfigurationList = A6B9E37D1CB5AB1B000CA2CD /* Build configuration list for PBXProject "TMMC_App_v1.3" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -122,7 +122,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A6B9E3811CB5AB1B000CA2CD /* TMMC_App_v1 */,
+				A6B9E3811CB5AB1B000CA2CD /* TMMC_App_v1.3 */,
 			);
 		};
 /* End PBXProject section */
@@ -268,8 +268,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TMMC_App_v1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.willheublein.TMMC-App-v1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.willheublein.TMMC-App";
+				PRODUCT_NAME = TMMC_App_v1.3;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -283,8 +283,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TMMC_App_v1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.willheublein.TMMC-App-v1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.willheublein.TMMC-App";
+				PRODUCT_NAME = TMMC_App_v1.3;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -293,7 +293,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A6B9E37D1CB5AB1B000CA2CD /* Build configuration list for PBXProject "TMMC_App_v1" */ = {
+		A6B9E37D1CB5AB1B000CA2CD /* Build configuration list for PBXProject "TMMC_App_v1.3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A6B9E3921CB5AB1B000CA2CD /* Debug */,
@@ -302,7 +302,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A6B9E3941CB5AB1B000CA2CD /* Build configuration list for PBXNativeTarget "TMMC_App_v1" */ = {
+		A6B9E3941CB5AB1B000CA2CD /* Build configuration list for PBXNativeTarget "TMMC_App_v1.3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A6B9E3951CB5AB1B000CA2CD /* Debug */,

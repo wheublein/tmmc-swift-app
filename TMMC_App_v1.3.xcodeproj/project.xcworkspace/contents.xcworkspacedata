@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:TMMC_App_v1.xcodeproj">
+      location = "self:/Users/wgh/Documents/tmmc-swift-app-v1.2/TMMC_App_v1.3.xcodeproj">
    </FileRef>
 </Workspace>
